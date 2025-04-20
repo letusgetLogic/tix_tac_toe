@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - PlayerX
+  - PlayerO
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Playground
+  - 
+  - 
+  - 
+  - PlaygroundBorder
+  - 
+  - 
+  - 
+  - 
+  - Field
+  - 
+  - Player
+  - 
+  - 
+  - Card
+  - 
+  - 
+  - 
+  - 
+  - Panel
+  - PanelCard
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3501881961
+    locked: 0
+  - name: UI
+    uniqueID: 207513841
+    locked: 0
+  - name: Playground
+    uniqueID: 3384418773
+    locked: 0
+  - name: Field
+    uniqueID: 815354679
+    locked: 0
+  - name: Card
+    uniqueID: 1128719175
+    locked: 0
+  - name: Panel
+    uniqueID: 303179617
+    locked: 0
+  - name: PanelCard
+    uniqueID: 3691059073
+    locked: 0

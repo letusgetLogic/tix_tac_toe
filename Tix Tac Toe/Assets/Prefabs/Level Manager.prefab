@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7544232012289190204
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1471408603233772127}
+  - component: {fileID: 5801351095458803824}
+  - component: {fileID: 5905173755564803397}
+  - component: {fileID: 2409630164152597296}
+  - component: {fileID: 6699666665722009057}
+  - component: {fileID: 3420522443731346926}
+  m_Layer: 0
+  m_Name: Level Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1471408603233772127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7544232012289190204}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 328.7, y: 348.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5801351095458803824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7544232012289190204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b80bb05a437060c438909cfa7d33226d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fieldPrefab: {fileID: 1114595402334700734, guid: 7ed5336a2a490944cac53886a444e9cf, type: 3}
+  MinFieldsForScore: 3
+  GameOver: 0
+  Testing: 0
+  FeatureNonstopScoreWhileScale: 0
+--- !u!114 &5905173755564803397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7544232012289190204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab926122ff84f79a3b33ca45688c59a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EndPoints: 10000
+  EndPointsTesting: 100
+  ScoreX: 0
+  ScoredPointsX: 0
+  MultiplierPointsX: 0
+  BasisPointsX: 10
+  ScoreO: 0
+  ScoredPointsO: 0
+  MultiplierPointsO: 0
+  BasisPointsO: 10
+--- !u!114 &2409630164152597296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7544232012289190204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1584ef09909439cb27f82204c10dcdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxScale: 2
+  animationDelay: 1
+  scaleDuration: 1
+  animationSlider: {fileID: 8504634180541672289, guid: 3e54c2285dc750b44ba922e0ce24ee80, type: 3}
+  AnimationIsRunning: 0
+  Act1_IsRunning: 0
+  Act2_IsRunning: 0
+  Act3_IsRunning: 0
+  Act4_IsRunning: 0
+  IsCheckingFields: 0
+  SetAnimationDelay: 0
+  AnimationDelayCount: 0
+  ScaleFieldsIsRunning: 0
+  ScaleFieldsHaveRunned: 0
+  SetScaleDuration: 0
+  ScaleDurationCount: 0
+  IsTurnEnding: 0
+  DefaultScale: {x: 0, y: 0, z: 0}
+--- !u!114 &6699666665722009057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7544232012289190204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d5c34501944bbd8d29597242b7c052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IndexHorizontalOrigin: 0
+  IndexVerticalOrigin: 0
+  FieldStateOrigin: 0
+  LongestArrayLength: 0
+--- !u!114 &3420522443731346926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7544232012289190204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc1615e3cb9e4a079d2d0dda7a155ce6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blinkingTime: 0.5
+  cooldownTime: 1
+  PlayerIsTurn: 0
+  CurrentPlayerTurn: 0
+  StartCooldown: 0

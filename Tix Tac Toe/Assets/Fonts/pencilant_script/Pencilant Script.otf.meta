@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: eb28d4265d4cafd4ca5de967f58b7d06
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Pencilant
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 71b13729ff11d2a49aaddfc0f0857280, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
