@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 namespace GlobalComponents
@@ -7,9 +8,10 @@ namespace GlobalComponents
     public class SliderDesignStates : MonoBehaviour
     {
         public event Action<float> OnSliderValueChanged;
-         
-        private Slider slider;
-        
+
+        private Slider slider => GetComponent<Slider>();
+
+
         private float[] states;
         private string sliderPrefKey;
 
@@ -20,16 +22,24 @@ namespace GlobalComponents
         /// <param name="assignedStates"></param>
         /// <param name="keyName"></param>
         /// <param name="defaultValue"></param>
-        public void GetSliderComponent(float[] assignedStates, string keyName, float defaultValue)
+        public float GetSliderComponent(float[] assignedStates, string keyName, float defaultValue)
         {
             states = assignedStates;
             sliderPrefKey = keyName;
+
+            if (PlayerPrefs.HasKey(keyName))
+            {
+                slider.value = PlayerPrefs.GetFloat(keyName);
+            }
+            else
+            {
+                slider.value = defaultValue;
+                PlayerPrefs.SetFloat(sliderPrefKey, defaultValue);
+            }
             
-            float savedValue = PlayerPrefs.GetFloat(sliderPrefKey, defaultValue);
-            
-            slider = GetComponent<Slider>();
-            slider.value = savedValue; 
             slider.onValueChanged.AddListener(OnValueChanged);
+
+            return slider.value;
         }
 
         /// <summary>
@@ -38,14 +48,14 @@ namespace GlobalComponents
         /// <param name="value"></param>
         private void OnValueChanged(float value)
         {
-            PlayerPrefs.SetFloat(sliderPrefKey, value);
-            PlayerPrefs.Save();
-            
             float closestValue = GetClosestState(value);
             
             slider.value = closestValue; 
             
             OnSliderValueChanged?.Invoke(closestValue);
+
+            PlayerPrefs.SetFloat(sliderPrefKey, closestValue);
+            PlayerPrefs.Save();
         }
 
         /// <summary>

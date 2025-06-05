@@ -9,7 +9,10 @@ public class Field : MonoBehaviour
     [SerializeField] private GameObject oSprite;
     [SerializeField] private GameObject oSpriteBack;
     [SerializeField] private GameObject makeUpSprite;
-        
+
+    [SerializeField] private AudioSource soundX;
+    [SerializeField] private AudioSource soundO;
+
     [HideInInspector] public int IndexVertical;
     [HideInInspector] public int IndexHorizontal;
     [HideInInspector] public FieldStates State;
@@ -99,7 +102,7 @@ public class Field : MonoBehaviour
     /// <summary>
     /// Sets the state of field.
     /// </summary>
-    public void SetFieldState()
+    private void SetFieldState()
     {
         makeUpSprite.SetActive(true);
 
@@ -109,7 +112,7 @@ public class Field : MonoBehaviour
                         
             State = FieldStates.FigureX;
                         
-            AudioManager.Instance.PlaySoundX();
+            PlaySoundX();
                         
             UIManager.Instance.MovesPlayerX++;
         }
@@ -119,7 +122,7 @@ public class Field : MonoBehaviour
                         
             State = FieldStates.FigureO;
                         
-            AudioManager.Instance.PlaySoundO();
+            PlaySoundO();
                         
             UIManager.Instance.MovesPlayerO++;
         }
@@ -148,4 +151,21 @@ public class Field : MonoBehaviour
         oSprite.SetActive(true);
         oSpriteBack.SetActive(true);
     }
+
+    /// <summary>
+    /// Plays sound while sets X.
+    /// </summary>
+    private void PlaySoundX()
+    {
+        soundX.PlayOneShot(soundX.clip);
+    }
+
+    /// <summary>
+    /// Plays sound while sets O.
+    /// </summary>
+    private void PlaySoundO()
+    {
+        soundO.PlayOneShot(soundO.clip);
+    }
+
 }

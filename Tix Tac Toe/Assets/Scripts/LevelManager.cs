@@ -130,15 +130,26 @@ public class LevelManager : MonoBehaviour
         
         switch (GameManager.LevelMode)
         {
-            case SceneType.LevelBotEasyScene:
+            case SceneType.LevelBotClassicScene:
                 GameManager.Instance.IsClickActive = true;
                 GameManager.Instance.IsBotActive = true;
                 return;
-                    
-            case SceneType.LevelDuelScene:
+
+            case SceneType.LevelDuelClassicScene:
                 GameManager.Instance.IsClickActive = true;
                 return;
-                    
+
+            case SceneType.LevelBotScaleUpScene:
+                GameManager.Instance.IsClickActive = true;
+                GameManager.Instance.IsBotActive = true;
+                GameManager.Instance.IsScaleUpActive = true;
+                return;
+
+            case SceneType.LevelDuelScaleUpScene:
+                GameManager.Instance.IsClickActive = true;
+                GameManager.Instance.IsScaleUpActive = true;
+                return;
+
             case SceneType.LevelDuelBlockScene:
                 GameManager.Instance.IsBlockActive = true;
                 return;

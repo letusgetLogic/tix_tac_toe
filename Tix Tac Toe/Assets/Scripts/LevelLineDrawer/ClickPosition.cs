@@ -6,7 +6,6 @@ public class ClickPosition : MonoBehaviour
 {
     protected Vector3 mousePosition;
 
-    private Object X;
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) // Linke Maustaste

@@ -13,7 +13,9 @@ public class Scoreboard : MonoBehaviour
     
     [Header("--- SerializeField ---")]
     public int EndPointsTesting;
-        
+    public int BasisPoints;
+    public int BasisPointsScaleUp;
+
     [Header("========== Player X ==========")]
     
     [Header("--- NonSerialized ---")]
@@ -21,18 +23,12 @@ public class Scoreboard : MonoBehaviour
     public int ScoredPointsX;
     public int MultiplierPointsX;
     
-    [Header("--- SerializeField ---")]
-    public int BasisPointsX;
-        
     [Header("========== Player O ==========")]
     
     [Header("--- NonSerialized ---")]
     public int ScoreO;
     public int ScoredPointsO;
     public int MultiplierPointsO;
-        
-    [Header("--- SerializeField ---")]
-    public int BasisPointsO;
     
     /// <summary>
     /// Awake method.
@@ -108,9 +104,9 @@ public class Scoreboard : MonoBehaviour
     /// </summary>
     public void CalculateScore()
     {
-        ScoredPointsX = BasisPointsX * MultiplierPointsX;
+        ScoredPointsX = BasisPoints * MultiplierPointsX;
         ScoreX += ScoredPointsX;
-        ScoredPointsO = BasisPointsO * MultiplierPointsO;
+        ScoredPointsO = BasisPoints * MultiplierPointsO;
         ScoreO += ScoredPointsO;
         
         if (ScoredPointsX > 0)
@@ -181,6 +177,18 @@ public class Scoreboard : MonoBehaviour
 
                 UIManager.Instance.OnEnableCongratulationsTextDraw();
                 return;
+        }
+    }
+
+    /// <summary>
+    /// Scales up the basis points.
+    /// </summary>
+    public void ScaleUpBasis()
+    {
+        if (TurnManager.Instance.IsScaleUpRound())
+        {
+            Debug.Log("ScaleUpBasis()");
+            BasisPoints += BasisPointsScaleUp;
         }
     }
         

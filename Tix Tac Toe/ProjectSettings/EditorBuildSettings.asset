@@ -12,11 +12,17 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenuScene.unity
     guid: a09fc54960c1ea44fa20b45e5cc3da30
   - enabled: 1
-    path: Assets/Scenes/LevelBotEasyScene.unity
+    path: Assets/Scenes/LevelBotClassicScene.unity
     guid: 151e980cf7eed4442ae9c7f92263b390
   - enabled: 1
-    path: Assets/Scenes/LevelDuelScene.unity
+    path: Assets/Scenes/LevelDuelClassicScene.unity
     guid: 34b8db82b0d37db46869793c333564b0
+  - enabled: 1
+    path: Assets/Scenes/LevelBotScaleUpScene.unity
+    guid: d23119a9e79310642b6f4237d7b1b925
+  - enabled: 1
+    path: Assets/Scenes/LevelDuelScaleUpScene.unity
+    guid: 53c81ee68733ca5428055da9694c4f21
   - enabled: 1
     path: Assets/Scenes/LevelDuelBlockScene.unity
     guid: 51af6bf9a73b75b4ea6bd25553c4836c

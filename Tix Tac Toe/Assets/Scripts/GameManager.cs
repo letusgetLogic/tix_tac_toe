@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public bool IsBotActive;
     public bool IsClickActive;
     public bool IsBlockActive;
+    public bool IsScaleUpActive;
     
     /// <summary>
     /// Awake method.
@@ -25,7 +26,5 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject); // Destroy the new instance instead of the old one.
         }
-        
-        
     }
 }

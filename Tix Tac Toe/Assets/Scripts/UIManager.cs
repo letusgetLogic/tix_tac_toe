@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] public GameObject ZickZack2GameObject;
     
     [SerializeField] private TextMeshProUGUI endPointsText;
+
     [SerializeField] private TextMeshProUGUI currentPointsXText;
     [SerializeField] private TextMeshProUGUI currentPointsOText;
     [SerializeField] private TextMeshProUGUI movesNumberXText;
@@ -24,10 +25,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI multiplierOText;
     [SerializeField] private TextMeshProUGUI scoredPointsXText;
     [SerializeField] private TextMeshProUGUI scoredPointsOText;
+
     [SerializeField] private TextMeshProUGUI congratulationsText;
+
     [SerializeField] private GameObject scoredPointsXGameObject;
     [SerializeField] private GameObject scoredPointsOGameObject;
     [SerializeField] private GameObject settingsPanel;
+    
+    [SerializeField] private GameObject wasdGameObject;
+    [SerializeField] private GameObject arrowGameObject;
    
 
     [HideInInspector] public int MovesPlayerX;
@@ -45,6 +51,11 @@ public class UIManager : MonoBehaviour
         }
 
         Instance = this;
+
+        if (settingsPanel.activeInHierarchy == false)
+        {
+            settingsPanel.SetActive(true);
+        }
     }
 
     /// <summary>
@@ -68,8 +79,12 @@ public class UIManager : MonoBehaviour
             
         ZickZackGameObject.SetActive(false);
         ZickZack2GameObject.SetActive(false);
-        
-        settingsPanel.SetActive(false);
+
+        if (GameManager.LevelMode == SceneType.LevelDuelBlockScene)
+        {
+            wasdGameObject.SetActive(true);
+            arrowGameObject.SetActive(true);
+        }
     }
 
     /// <summary>
@@ -89,8 +104,8 @@ public class UIManager : MonoBehaviour
         currentPointsOText.text = Scoreboard.Instance.ScoreO.ToString();
         movesNumberXText.text = MovesPlayerX.ToString();
         movesNumberOText.text = MovesPlayerO.ToString();
-        basisPointsXText.text = Scoreboard.Instance.BasisPointsX.ToString();
-        basisPointsOText.text = Scoreboard.Instance.BasisPointsO.ToString();
+        basisPointsXText.text = Scoreboard.Instance.BasisPoints.ToString();
+        basisPointsOText.text = Scoreboard.Instance.BasisPoints.ToString();
         multiplierXText.text = Scoreboard.Instance.MultiplierPointsX.ToString();
         multiplierOText.text = Scoreboard.Instance.MultiplierPointsO.ToString();
         scoredPointsXText.text = Scoreboard.Instance.ScoredPointsX.ToString();
@@ -176,6 +191,12 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void OnEnableCongratulationsTextX()
     {
+        if (GameManager.LevelMode == SceneType.LevelDuelBlockScene)
+        {
+            wasdGameObject.SetActive(false);
+            arrowGameObject.SetActive(false);
+        }
+
         congratulationsText.enabled = true;
         congratulationsText.text = "Player X wins!";
         ZickZackGameObject.SetActive(true);
@@ -187,6 +208,12 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void OnEnableCongratulationsTextO()
     {
+        if (GameManager.LevelMode == SceneType.LevelDuelBlockScene)
+        {
+            wasdGameObject.SetActive(false);
+            arrowGameObject.SetActive(false);
+        }
+
         congratulationsText.enabled = true;
         congratulationsText.text = "Player O wins!";
         ZickZackGameObject.SetActive(true);

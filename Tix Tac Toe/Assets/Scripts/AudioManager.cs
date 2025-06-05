@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 
@@ -8,15 +9,13 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
 
     [SerializeField] private AudioSource backgroundMusic;
-    [SerializeField] private AudioSource soundX;
-    [SerializeField] private AudioSource soundO;
     [SerializeField] private AudioSource soundPoint;
     [SerializeField] private AudioSource soundScribble;
     [SerializeField] private AudioMixer audioMixer;
-    [SerializeField] private Slider musicSlider;
-    [SerializeField] private Slider sfxSlider;
-    
-    
+    private Slider musicSlider;
+    private Slider sfxSlider;
+
+
     /// <summary>
     /// Awake method.
     /// </summary>
@@ -24,40 +23,14 @@ public class AudioManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Destroy(Instance.gameObject); 
+            Destroy(Instance.gameObject);
         }
 
         Instance = this;
     }
 
     /// <summary>
-    /// Start method.
-    /// </summary>
-    private void Start()
-    {
-        if (PlayerPrefs.HasKey("MusicVolume"))
-        {
-            musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
-            SetMusicVolume();
-        }
-        else
-        {
-            SetMusicVolume();
-        } 
-        
-        if (PlayerPrefs.HasKey("SFXVolume"))
-        {
-            sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
-            SetSFXVolume();
-        }
-        else
-        {
-            SetSFXVolume();
-        }
-    }
-    
-    /// <summary>
-    /// Sets music volume.
+    /// Reads music volume of the slider and sets the value in the audio mixer.
     /// </summary>
     public void SetMusicVolume()
     {
@@ -67,7 +40,7 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets sfx volume.
+    /// Reads sfx volume of the slider and sets the value in the audio mixer.
     /// </summary>
     public void SetSFXVolume()
     {
@@ -77,26 +50,50 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Plays sound while sets X.
-    /// </summary>
-    public void PlaySoundX()
-    {
-        soundX.PlayOneShot(soundX.clip);
-    }
-    
-    /// <summary>
-    /// Plays sound while sets O.
-    /// </summary>
-    public void PlaySoundO()
-    {
-        soundO.PlayOneShot(soundO.clip);
-    }
-    
-    /// <summary>
     /// Plays beep sound while scales field bigger.
     /// </summary>
     public void PlaySoundPoint()
     {
         soundPoint.PlayOneShot(soundPoint.clip);
+    }
+
+    /// <summary>
+    /// Initializes the music slider on the at the momement running scene.
+    /// </summary>
+    /// <param name="slider"></param>
+    public void InitializeMusicSlider(Slider slider)
+    {
+        musicSlider = slider;
+
+        if (PlayerPrefs.HasKey("MusicVolume"))
+        {
+            float volume = PlayerPrefs.GetFloat("MusicVolume");
+            musicSlider.value = volume;
+            audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
+        }
+        else
+        {
+            SetMusicVolume();
+        }
+    }
+    
+    /// <summary>
+    /// Initializes the sfx slider on the at the momement running scene.
+    /// </summary>
+    /// <param name="slider"></param>
+    public void InitializeSFXSlider(Slider slider)
+    {
+        sfxSlider = slider;
+
+        if (PlayerPrefs.HasKey("SFXVolume"))
+        {
+            float volume = PlayerPrefs.GetFloat("SFXVolume");
+            sfxSlider.value = volume;
+            audioMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20);
+        }
+        else
+        {
+            SetSFXVolume();
+        }
     }
 }

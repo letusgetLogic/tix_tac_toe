@@ -8,7 +8,6 @@ public class AnimationManager : MonoBehaviour
 
     [SerializeField] private float maxScale = 2f;
     [SerializeField] private float animationDelay = 1f; // Delay between 'field is clicked' and animation;
-    [SerializeField] private Slider animationSlider;
     private readonly float[] sliderStates = { 0f, 0.5f, 1f };
         
     [Header("States")]
@@ -94,10 +93,6 @@ public class AnimationManager : MonoBehaviour
 
         indexCount = 0;
         indexCountTemp = 0;
-
-        sliderDesignStates = animationSlider.GetComponent<SliderDesignStates>();
-        sliderDesignStates.GetSliderComponent(sliderStates, "AnimationDuration", animationDelay);
-        sliderDesignStates.OnSliderValueChanged += HandleSliderChange;
     }
 
     /// <summary>
@@ -114,6 +109,7 @@ public class AnimationManager : MonoBehaviour
     /// <param name="value"></param>
     private void HandleSliderChange(float value)
     {
+        Debug.Log(value);
         animationDelay = value;
     }
     
@@ -224,7 +220,6 @@ public class AnimationManager : MonoBehaviour
             if (ScaleDurationCount > 0f)
             {
                 ScaleDurationCount -= Time.deltaTime;
-                Debug.Log(ScaleDurationCount);
             }
             else
             {
@@ -376,5 +371,19 @@ public class AnimationManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// Initializes sliderDesignStates.
+    /// </summary>
+    /// <param name="sliderDesignStates"></param>
+    public void InitializeSliderDesignStates(SliderDesignStates sliderDesignStates)
+    {
+        this.sliderDesignStates = sliderDesignStates;
+
+        float sliderValue = this.sliderDesignStates.GetSliderComponent(sliderStates, "AnimationDuration", animationDelay);
+        animationDelay = sliderValue;
+
+        this.sliderDesignStates.OnSliderValueChanged += HandleSliderChange;
     }
 }
