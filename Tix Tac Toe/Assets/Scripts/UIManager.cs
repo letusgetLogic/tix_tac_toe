@@ -90,9 +90,9 @@ public class UIManager : MonoBehaviour
     /// <summary>
     /// Initializes end points in UI.
     /// </summary>
-    public void InitializeEndPoints()
+    public void InitializeEndPoints(string endPoints)
     {
-        endPointsText.text = Scoreboard.Instance.EndPoints.ToString();
+        endPointsText.text = endPoints;
     }
 
     /// <summary>

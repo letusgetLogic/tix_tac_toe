@@ -10,10 +10,9 @@ public class MainMenu : MonoBehaviour
         
     [SerializeField] private TMP_InputField playerScoreInput;
     [HideInInspector] public int InputScore;
-        
-    private readonly int maxInputScore = 99999;
-        
-        
+
+    public readonly int MaxInputScore = 999999999;
+
     /// <summary>
     /// Awake method.
     /// </summary>
@@ -49,7 +48,7 @@ public class MainMenu : MonoBehaviour
             
         if (int.TryParse(input, out InputScore))
         {
-            if (InputScore >= 0 && InputScore <= maxInputScore)
+            if (InputScore >= 0 && InputScore <= MaxInputScore)
             {
                 switch (GameManager.LevelMode)
                 {

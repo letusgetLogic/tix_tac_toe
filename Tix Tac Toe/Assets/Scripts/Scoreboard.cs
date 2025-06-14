@@ -29,7 +29,10 @@ public class Scoreboard : MonoBehaviour
     public int ScoreO;
     public int ScoredPointsO;
     public int MultiplierPointsO;
-    
+
+   
+
+
     /// <summary>
     /// Awake method.
     /// </summary>
@@ -51,7 +54,7 @@ public class Scoreboard : MonoBehaviour
         if (LevelManager.Instance.Testing)
         {
             EndPoints = EndPointsTesting;
-            UIManager.Instance.InitializeEndPoints();
+            UIManager.Instance.InitializeEndPoints(EndPoints.ToString());
         }
         else InitializeScore();
     }
@@ -64,12 +67,12 @@ public class Scoreboard : MonoBehaviour
         switch (MainMenu.Instance.InputScore)
         {
             case 0:
-                EndPoints = 99999;
-                UIManager.Instance.InitializeEndPoints();
+                EndPoints = MainMenu.Instance.MaxInputScore;
+                UIManager.Instance.InitializeEndPoints("\u221E");
                 break;
             case > 0:
                 EndPoints = MainMenu.Instance.InputScore;
-                UIManager.Instance.InitializeEndPoints();
+                UIManager.Instance.InitializeEndPoints(EndPoints.ToString());
                 break;
         }
     }
@@ -187,7 +190,6 @@ public class Scoreboard : MonoBehaviour
     {
         if (TurnManager.Instance.IsScaleUpRound())
         {
-            Debug.Log("ScaleUpBasis()");
             BasisPoints += BasisPointsScaleUp;
         }
     }

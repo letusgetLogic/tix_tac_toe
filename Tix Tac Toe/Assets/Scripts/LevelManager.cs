@@ -23,8 +23,9 @@ public class LevelManager : MonoBehaviour
     public bool Testing = true;
 
     public bool FeatureNonstopScoreWhileScale = false;
-        
-    
+
+   
+
     /// <summary>
     /// Awake method.
     /// </summary>
