@@ -8,9 +8,9 @@ public class GameManager : MonoBehaviour
     public static SceneType LevelMode;
 
     public bool IsBotActive;
-    public bool IsClickActive;
-    public bool IsBlockActive;
-    public bool IsScaleUpActive;
+    public bool IsClickingActive;
+    public bool IsBlockingActive;
+    public bool IsScalingUpActive;
     
     /// <summary>
     /// Awake method.

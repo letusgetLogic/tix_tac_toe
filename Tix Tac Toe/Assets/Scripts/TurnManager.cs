@@ -142,9 +142,9 @@ public class TurnManager : MonoBehaviour
             {
                 Round++;
 
-                if (GameManager.Instance.IsScaleUpActive)
+                if (GameManager.Instance.IsScalingUpActive)
                 {
-                    Scoreboard.Instance.ScaleUpBasis();
+                    Scoreboard.Instance.ScaleUpBase();
                 }
             }
         }
@@ -182,7 +182,7 @@ public class TurnManager : MonoBehaviour
     /// Is yet the scale up round?
     /// </summary>
     /// <returns></returns>
-    public bool IsScaleUpRound()
+    public bool IsScalingUpRound()
     {
         if (Round <= roundDistance) return false;
 

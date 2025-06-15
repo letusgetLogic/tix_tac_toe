@@ -6483,6 +6483,10 @@ PrefabInstance:
       propertyPath: Testing
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5905173755564803397, guid: 2546d1f251d35544ca7cb28eb142b73f, type: 3}
+      propertyPath: BasePoints
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7544232012289190204, guid: 2546d1f251d35544ca7cb28eb142b73f, type: 3}
       propertyPath: m_Name
       value: Level Manager

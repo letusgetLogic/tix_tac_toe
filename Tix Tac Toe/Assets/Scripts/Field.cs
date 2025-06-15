@@ -52,7 +52,7 @@ public class Field : MonoBehaviour
     /// </summary>
     public void OnMouseDown()
     {
-        if (!GameManager.Instance.IsClickActive) return;
+        if (!GameManager.Instance.IsClickingActive) return;
         
         CheckInput();
     }

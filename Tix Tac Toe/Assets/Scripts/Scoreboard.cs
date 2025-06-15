@@ -13,8 +13,8 @@ public class Scoreboard : MonoBehaviour
     
     [Header("--- SerializeField ---")]
     public int EndPointsTesting;
-    public int BasisPoints;
-    public int BasisPointsScaleUp;
+    public int BasePoints = 10;
+    public int BasePointsScalingUp = 10;
 
     [Header("========== Player X ==========")]
     
@@ -107,9 +107,9 @@ public class Scoreboard : MonoBehaviour
     /// </summary>
     public void CalculateScore()
     {
-        ScoredPointsX = BasisPoints * MultiplierPointsX;
+        ScoredPointsX = BasePoints * MultiplierPointsX;
         ScoreX += ScoredPointsX;
-        ScoredPointsO = BasisPoints * MultiplierPointsO;
+        ScoredPointsO = BasePoints * MultiplierPointsO;
         ScoreO += ScoredPointsO;
         
         if (ScoredPointsX > 0)
@@ -122,6 +122,10 @@ public class Scoreboard : MonoBehaviour
         }
     }
         
+    /// <summary>
+    /// Returns the win state.
+    /// </summary>
+    /// <returns></returns>
     public WinState CheckCurrentLevelStates()
     {
         if (UIManager.Instance.MovesPlayerX == UIManager.Instance.MovesPlayerO)
@@ -184,16 +188,20 @@ public class Scoreboard : MonoBehaviour
     }
 
     /// <summary>
-    /// Scales up the basis points.
+    /// Scales up the base points.
     /// </summary>
-    public void ScaleUpBasis()
+    public void ScaleUpBase()
     {
-        if (TurnManager.Instance.IsScaleUpRound())
+        if (TurnManager.Instance.IsScalingUpRound())
         {
-            BasisPoints += BasisPointsScaleUp;
+            BasePoints += BasePointsScalingUp;
         }
     }
         
+    /// <summary>
+    /// Returns the even total amount of fields on the board.
+    /// </summary>
+    /// <returns></returns>
     private int EvenFullFields()
     {
         int fieldsSum = LevelManager.Instance.NumberFieldHorizontal * LevelManager.Instance.NumberFieldVertical;

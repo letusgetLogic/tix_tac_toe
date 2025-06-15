@@ -132,27 +132,27 @@ public class LevelManager : MonoBehaviour
         switch (GameManager.LevelMode)
         {
             case SceneType.LevelBotClassicScene:
-                GameManager.Instance.IsClickActive = true;
+                GameManager.Instance.IsClickingActive = true;
                 GameManager.Instance.IsBotActive = true;
                 return;
 
             case SceneType.LevelDuelClassicScene:
-                GameManager.Instance.IsClickActive = true;
+                GameManager.Instance.IsClickingActive = true;
                 return;
 
-            case SceneType.LevelBotScaleUpScene:
-                GameManager.Instance.IsClickActive = true;
+            case SceneType.LevelBotScalingUpScene:
+                GameManager.Instance.IsClickingActive = true;
                 GameManager.Instance.IsBotActive = true;
-                GameManager.Instance.IsScaleUpActive = true;
+                GameManager.Instance.IsScalingUpActive = true;
                 return;
 
-            case SceneType.LevelDuelScaleUpScene:
-                GameManager.Instance.IsClickActive = true;
-                GameManager.Instance.IsScaleUpActive = true;
+            case SceneType.LevelDuelScalingUpScene:
+                GameManager.Instance.IsClickingActive = true;
+                GameManager.Instance.IsScalingUpActive = true;
                 return;
 
-            case SceneType.LevelDuelBlockScene:
-                GameManager.Instance.IsBlockActive = true;
+            case SceneType.LevelDuelBlockingScene:
+                GameManager.Instance.IsBlockingActive = true;
                 return;
         }
     }

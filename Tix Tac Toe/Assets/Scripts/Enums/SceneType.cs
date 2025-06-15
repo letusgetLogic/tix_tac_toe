@@ -4,11 +4,15 @@ namespace Enums
     {
         AttentionScene,
         MainMenuScene,
+
         LevelBotClassicScene,
         LevelDuelClassicScene,
-        LevelBotScaleUpScene,
-        LevelDuelScaleUpScene,
-        LevelDuelBlockScene,
+
+        LevelBotScalingUpScene,
+        LevelDuelScalingUpScene,
+
+        LevelDuelBlockingScene,
+
         LevelCardScene,
     }
 }

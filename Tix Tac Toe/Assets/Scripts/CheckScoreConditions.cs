@@ -5,8 +5,10 @@ public class CheckScoreConditions : MonoBehaviour
 {
     public static CheckScoreConditions Instance;
 
+    [Header("--- NonSerialized ---")]
     // Field's Data.
-    public int IndexHorizontalOrigin, IndexVerticalOrigin;
+    public int IndexHorizontalOrigin;
+    public int IndexVerticalOrigin;
     public FieldStates FieldStateOrigin;
         
     // Variables for the counter in different directions.

@@ -1798,7 +1798,7 @@ GameObject:
   - component: {fileID: 2496504914349335693}
   - component: {fileID: 2194233828423703124}
   m_Layer: 0
-  m_Name: X_BasisPointsButton
+  m_Name: X_BasePointsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8933,7 +8933,7 @@ GameObject:
   - component: {fileID: 7573675529860655942}
   - component: {fileID: 5265380269175031237}
   m_Layer: 0
-  m_Name: X_BasisPointsText
+  m_Name: X_BasePointsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8986,7 +8986,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Basis \n"
+  m_text: 'Base
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 65eb1c243ef9f2a4580a21988b653fb6, type: 2}
   m_sharedMaterial: {fileID: -20917427889551, guid: 65eb1c243ef9f2a4580a21988b653fb6, type: 2}
@@ -9201,7 +9203,7 @@ GameObject:
   - component: {fileID: 7698680708979178639}
   - component: {fileID: 5700679744300772409}
   m_Layer: 0
-  m_Name: O_BasisPointsText
+  m_Name: O_BasePointsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9254,7 +9256,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Basis \n"
+  m_text: 'Base
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 65eb1c243ef9f2a4580a21988b653fb6, type: 2}
   m_sharedMaterial: {fileID: -20917427889551, guid: 65eb1c243ef9f2a4580a21988b653fb6, type: 2}
@@ -9442,7 +9446,7 @@ GameObject:
   - component: {fileID: 7582348088619478925}
   - component: {fileID: 8744617274727512916}
   m_Layer: 0
-  m_Name: O_BasisPointsButton
+  m_Name: O_BasePointsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9956,6 +9960,8 @@ MonoBehaviour:
   scoredPointsXGameObject: {fileID: 2755188045918493333}
   scoredPointsOGameObject: {fileID: 5898902588643896263}
   settingsPanel: {fileID: 3609660617057543124}
+  wasdGameObject: {fileID: 0}
+  arrowGameObject: {fileID: 0}
   MovesPlayerX: 0
   MovesPlayerO: 0
 --- !u!95 &4938924646930451639

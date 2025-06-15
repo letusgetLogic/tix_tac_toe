@@ -80,7 +80,7 @@ public class UIManager : MonoBehaviour
         ZickZackGameObject.SetActive(false);
         ZickZack2GameObject.SetActive(false);
 
-        if (GameManager.LevelMode == SceneType.LevelDuelBlockScene)
+        if (GameManager.LevelMode == SceneType.LevelDuelBlockingScene)
         {
             wasdGameObject.SetActive(true);
             arrowGameObject.SetActive(true);
@@ -104,8 +104,8 @@ public class UIManager : MonoBehaviour
         currentPointsOText.text = Scoreboard.Instance.ScoreO.ToString();
         movesNumberXText.text = MovesPlayerX.ToString();
         movesNumberOText.text = MovesPlayerO.ToString();
-        basisPointsXText.text = Scoreboard.Instance.BasisPoints.ToString();
-        basisPointsOText.text = Scoreboard.Instance.BasisPoints.ToString();
+        basisPointsXText.text = Scoreboard.Instance.BasePoints.ToString();
+        basisPointsOText.text = Scoreboard.Instance.BasePoints.ToString();
         multiplierXText.text = Scoreboard.Instance.MultiplierPointsX.ToString();
         multiplierOText.text = Scoreboard.Instance.MultiplierPointsO.ToString();
         scoredPointsXText.text = Scoreboard.Instance.ScoredPointsX.ToString();
@@ -191,7 +191,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void OnEnableCongratulationsTextX()
     {
-        if (GameManager.LevelMode == SceneType.LevelDuelBlockScene)
+        if (GameManager.LevelMode == SceneType.LevelDuelBlockingScene)
         {
             wasdGameObject.SetActive(false);
             arrowGameObject.SetActive(false);
@@ -208,7 +208,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void OnEnableCongratulationsTextO()
     {
-        if (GameManager.LevelMode == SceneType.LevelDuelBlockScene)
+        if (GameManager.LevelMode == SceneType.LevelDuelBlockingScene)
         {
             wasdGameObject.SetActive(false);
             arrowGameObject.SetActive(false);

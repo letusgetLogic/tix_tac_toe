@@ -34,9 +34,9 @@ public class MainMenu : MonoBehaviour
         InputScore = -1;
         
         GameManager.Instance.IsBotActive = false;
-        GameManager.Instance.IsClickActive = false;
-        GameManager.Instance.IsBlockActive = false;
-        GameManager.Instance.IsScaleUpActive = false;
+        GameManager.Instance.IsClickingActive = false;
+        GameManager.Instance.IsBlockingActive = false;
+        GameManager.Instance.IsScalingUpActive = false;
     }
 
     /// <summary>
@@ -54,31 +54,31 @@ public class MainMenu : MonoBehaviour
                 {
                     case SceneType.LevelBotClassicScene:
                         SceneManager.LoadScene(SceneType.LevelBotClassicScene.ToString());
-                        GameManager.Instance.IsClickActive = true;
+                        GameManager.Instance.IsClickingActive = true;
                         GameManager.Instance.IsBotActive = true;
                         return;
 
                     case SceneType.LevelDuelClassicScene:
                         SceneManager.LoadScene(SceneType.LevelDuelClassicScene.ToString());
-                        GameManager.Instance.IsClickActive = true;
+                        GameManager.Instance.IsClickingActive = true;
                         return;
 
-                    case SceneType.LevelBotScaleUpScene:
-                        SceneManager.LoadScene(SceneType.LevelBotScaleUpScene.ToString());
-                        GameManager.Instance.IsClickActive = true;
+                    case SceneType.LevelBotScalingUpScene:
+                        SceneManager.LoadScene(SceneType.LevelBotScalingUpScene.ToString());
+                        GameManager.Instance.IsClickingActive = true;
                         GameManager.Instance.IsBotActive = true;
-                        GameManager.Instance.IsScaleUpActive = true;
+                        GameManager.Instance.IsScalingUpActive = true;
                         return;
                         
-                    case SceneType.LevelDuelScaleUpScene:
-                        SceneManager.LoadScene(SceneType.LevelBotScaleUpScene.ToString());
-                        GameManager.Instance.IsClickActive = true;
-                        GameManager.Instance.IsScaleUpActive = true;
+                    case SceneType.LevelDuelScalingUpScene:
+                        SceneManager.LoadScene(SceneType.LevelBotScalingUpScene.ToString());
+                        GameManager.Instance.IsClickingActive = true;
+                        GameManager.Instance.IsScalingUpActive = true;
                         return;
                     
-                    case SceneType.LevelDuelBlockScene:
-                        SceneManager.LoadScene(SceneType.LevelDuelBlockScene.ToString());
-                        GameManager.Instance.IsBlockActive = true;
+                    case SceneType.LevelDuelBlockingScene:
+                        SceneManager.LoadScene(SceneType.LevelDuelBlockingScene.ToString());
+                        GameManager.Instance.IsBlockingActive = true;
                         return;
 
                 }
@@ -108,7 +108,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void OnModeBotScaleUp()
     {
-        GameManager.LevelMode = SceneType.LevelBotScaleUpScene;
+        GameManager.LevelMode = SceneType.LevelBotScalingUpScene;
     }
 
     /// <summary>
@@ -116,7 +116,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void OnModeDuelScaleUp()
     {
-        GameManager.LevelMode = SceneType.LevelDuelScaleUpScene;
+        GameManager.LevelMode = SceneType.LevelDuelScalingUpScene;
     }
 
     /// <summary>
@@ -124,7 +124,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void OnModeDuelBlock()
     {
-        GameManager.LevelMode = SceneType.LevelDuelBlockScene;
+        GameManager.LevelMode = SceneType.LevelDuelBlockingScene;
     }
 
     /// <summary>
