@@ -13,8 +13,8 @@ public class Field : MonoBehaviour
     [SerializeField] private AudioSource soundX;
     [SerializeField] private AudioSource soundO;
 
-    [HideInInspector] public int IndexVertical;
-    [HideInInspector] public int IndexHorizontal;
+    [HideInInspector] public int Row; // index of the row
+    [HideInInspector] public int Col; // index of the column
     [HideInInspector] public FieldStates State;
 
     private bool isClickable;
@@ -37,13 +37,13 @@ public class Field : MonoBehaviour
     /// <summary>
     /// Initializes data of field.
     /// </summary>
-    /// <param name="fieldIndexVertical"></param>
-    /// <param name="fieldIndexHorizontal"></param>
+    /// <param name="indexRow"></param>
+    /// <param name="indexCol"></param>
     /// <param name="fieldState"></param>
-    public void InitializeData(int fieldIndexVertical, int fieldIndexHorizontal, FieldStates fieldState)
+    public void InitializeData(int indexCol, int indexRow, FieldStates fieldState)
     {
-        this.IndexVertical = fieldIndexVertical;
-        this.IndexHorizontal = fieldIndexHorizontal;
+        this.Col = indexCol;
+        this.Row = indexRow;
         this.State = fieldState;
     }
     
@@ -70,7 +70,7 @@ public class Field : MonoBehaviour
         }
 
         if (GameManager.Instance.IsBotActive &&
-            TurnManager.Instance.CurrentPlayerTurn == TurnStates.PlayerO)
+            TurnManager.Instance.CurrentPlayerTurn == TurnManager.Instance.BotTurn)
         {
             return;
         }
@@ -92,7 +92,7 @@ public class Field : MonoBehaviour
             {
                 SetFieldState();
 
-                CheckScoreConditions.Instance.InitializeData(IndexHorizontal, IndexVertical, State);
+                CheckScoreConditions.Instance.InitializeData(Col, Row, State);
                     
                 AnimationManager.Instance.StartAnimation();
             }

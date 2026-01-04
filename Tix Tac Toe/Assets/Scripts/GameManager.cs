@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     
     public static SceneType LevelMode;
 
-    public bool IsBotActive;
+    public bool IsBotActive { get; set; }
     public bool IsClickingActive;
     public bool IsBlockingActive;
     public bool IsScalingUpActive;

@@ -1,5 +1,7 @@
 using Enums;
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TurnManager : MonoBehaviour
 {
@@ -18,12 +20,15 @@ public class TurnManager : MonoBehaviour
 
     private bool randomTurn;
 
+    public readonly TurnStates DefaultFirstTurn = TurnStates.PlayerX;
+    public readonly TurnStates BotTurn = TurnStates.PlayerX;
+
     private float blinkingTimeCount;
     private bool isBlinkingTimeCountingDown;
 
-    private bool setCooldown;
-    public bool StartCooldown;
-    private float cooldownTimeCountdown;
+    private bool setCooldown { get; set; }
+    private bool isCountingDown { get; set; }
+    private float cooldownTimeCountdown { get; set; }
 
     public int Round = 0;
     [SerializeField] private int roundDistance = 3;
@@ -42,21 +47,27 @@ public class TurnManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Start method.
+    /// Initialize values.
     /// </summary>
-    private void Start()
+    public void Init()
     {
+        PlayerIsTurn = false;
+
+        setCooldown = false;
+        isCountingDown = false;
+        cooldownTimeCountdown = 0;
+
         randomTurn = false;
 
         if (randomTurn == false)
-        {
-            CurrentPlayerTurn = TurnStates.PlayerX;
-            UIManager.Instance.OnEnablePlayerXTurn();
-        }
+            CurrentPlayerTurn = DefaultFirstTurn;
+        
+        if (LevelManager.Instance.Testing) 
+            InitializeLevelWhileTesting();
 
-        setCooldown = false;
-        StartCooldown = false;
-        cooldownTimeCountdown = 0;
+        if (GameManager.Instance.IsBotActive)
+            SetBotTurn();
+
         Round = 1;
     }
 
@@ -68,11 +79,6 @@ public class TurnManager : MonoBehaviour
         if (!LevelManager.Instance.GameOver)
         {
             PlayerTurnBlinkingArrow();
-        }
-        else
-        {
-            CurrentPlayerTurn = TurnStates.PlayerEmpty;
-            UIManager.Instance.OnDisableTurnSprites();
         }
 
         if (GameManager.Instance.IsBotActive)
@@ -88,34 +94,44 @@ public class TurnManager : MonoBehaviour
     {
         // Timer
         if (isBlinkingTimeCountingDown) blinkingTimeCount -= Time.deltaTime;
-        else blinkingTimeCount += Time.deltaTime;
+        else                            blinkingTimeCount += Time.deltaTime;
 
         // Timer switch count
-        if (blinkingTimeCount <= 0) isBlinkingTimeCountingDown = false;
-        if (blinkingTimeCount >= blinkingTime) isBlinkingTimeCountingDown = true;
+        if (blinkingTimeCount <= 0)             isBlinkingTimeCountingDown = false;
+        if (blinkingTimeCount >= blinkingTime)  isBlinkingTimeCountingDown = true;
 
-        if (CurrentPlayerTurn == TurnStates.PlayerX)
-        {
-            UIManager.Instance.OnEnablePlayerXTurn();
+        UIManager.Instance.SetTurnX(
+            CurrentPlayerTurn == TurnStates.PlayerX && 
+            isBlinkingTimeCountingDown);
 
-            SpriteRenderer spriteRendererX =
-                UIManager.Instance.PlayerXTurnGameObject.GetComponent<SpriteRenderer>();
+        UIManager.Instance.SetTurnO(
+            CurrentPlayerTurn == TurnStates.PlayerO && 
+            isBlinkingTimeCountingDown);
 
-            // Blinking Arrow
-            if (isBlinkingTimeCountingDown) spriteRendererX.enabled = true;
-            else spriteRendererX.enabled = false;
-        }
-        else if (CurrentPlayerTurn == TurnStates.PlayerO)
-        {
-            UIManager.Instance.OnEnablePlayerOTurn();
+        // --- Old Version ---
+        //
+        //if (CurrentPlayerTurn == TurnStates.PlayerX)
+        //{
+        //    UIManager.Instance.OnEnablePlayerXTurn();
 
-            SpriteRenderer spriteRendererO =
-                UIManager.Instance.PlayerOTurnGameObject.GetComponent<SpriteRenderer>();
+        //    SpriteRenderer spriteRendererX =
+        //        UIManager.Instance.PlayerXTurnGameObject.GetComponent<SpriteRenderer>();
 
-            // Blinking Arrow
-            if (isBlinkingTimeCountingDown) spriteRendererO.enabled = true;
-            else spriteRendererO.enabled = false;
-        }
+        //    // Blinking Arrow
+        //    if (isBlinkingTimeCountingDown) spriteRendererX.enabled = true;
+        //    else spriteRendererX.enabled = false;
+        //}
+        //else if (CurrentPlayerTurn == TurnStates.PlayerO)
+        //{
+        //    UIManager.Instance.OnEnablePlayerOTurn();
+
+        //    SpriteRenderer spriteRendererO =
+        //        UIManager.Instance.PlayerOTurnGameObject.GetComponent<SpriteRenderer>();
+
+        //    // Blinking Arrow
+        //    if (isBlinkingTimeCountingDown) spriteRendererO.enabled = true;
+        //    else spriteRendererO.enabled = false;
+        //}
     }
 
     /// <summary>
@@ -125,27 +141,15 @@ public class TurnManager : MonoBehaviour
     {
         PlayerIsTurn = false;
 
-        if (CurrentPlayerTurn == TurnStates.PlayerX)
+        SwitchTurn();
+
+        if (randomTurn == false && CurrentPlayerTurn == DefaultFirstTurn)
         {
-            CurrentPlayerTurn = TurnStates.PlayerO;
+            Round++;
 
-            if (GameManager.Instance.IsBotActive)
+            if (GameManager.Instance.IsScalingUpActive)
             {
-                setCooldown = true;
-            }
-        }
-        else if (CurrentPlayerTurn == TurnStates.PlayerO)
-        {
-            CurrentPlayerTurn = TurnStates.PlayerX;
-
-            if (randomTurn == false)
-            {
-                Round++;
-
-                if (GameManager.Instance.IsScalingUpActive)
-                {
-                    Scoreboard.Instance.ScaleUpBase();
-                }
+                Scoreboard.Instance.ScaleUpBase();
             }
         }
 
@@ -160,11 +164,11 @@ public class TurnManager : MonoBehaviour
         if (setCooldown)
         {
             cooldownTimeCountdown = cooldownTime;
-            StartCooldown = true;
+            isCountingDown = true;
             setCooldown = false;
         }
 
-        if (StartCooldown)
+        if (isCountingDown)
         {
             if (cooldownTimeCountdown > 0f)
             {
@@ -172,8 +176,8 @@ public class TurnManager : MonoBehaviour
             }
             else
             {
-                cooldownTimeCountdown = 0f;
                 Bot.Instance.OnRandomField();
+                isCountingDown = false;
             }
         }
     }
@@ -188,4 +192,71 @@ public class TurnManager : MonoBehaviour
 
         return (Round - 1) % roundDistance == 0;
     }
+
+    private void SwitchTurn()
+    {
+        if (CurrentPlayerTurn == TurnStates.PlayerX)
+        {
+            CurrentPlayerTurn = TurnStates.PlayerO;
+
+        }
+        else if (CurrentPlayerTurn == TurnStates.PlayerO)
+        {
+            CurrentPlayerTurn = TurnStates.PlayerX;
+        }
+        if (GameManager.Instance.IsBotActive && CurrentPlayerTurn == BotTurn)
+        {
+            setCooldown = true;
+        }
+    }
+
+    /// <summary>
+    /// Initializes serialized score in inspector and runs the level.
+    /// </summary>
+    private void InitializeLevelWhileTesting()
+    {
+        string sceneType = SceneManager.GetActiveScene().name;
+
+        if (Enum.TryParse(sceneType, out SceneType scene))
+        {
+            GameManager.LevelMode = scene;
+        }
+        else
+        {
+            Debug.Log("LevelManager::InitializeLevelWhileTesting: Invalid scene.!");
+        }
+
+        switch (GameManager.LevelMode)
+        {
+            case SceneType.LevelBotClassicScene:
+                GameManager.Instance.IsClickingActive = true;
+                GameManager.Instance.IsBotActive = true;
+                return;
+
+            case SceneType.LevelBotScalingUpScene:
+                GameManager.Instance.IsClickingActive = true;
+                GameManager.Instance.IsBotActive = true;
+                GameManager.Instance.IsScalingUpActive = true;
+                return;
+
+            case SceneType.LevelDuelClassicScene:
+                GameManager.Instance.IsClickingActive = true;
+                return;
+
+            case SceneType.LevelDuelScalingUpScene:
+                GameManager.Instance.IsClickingActive = true;
+                GameManager.Instance.IsScalingUpActive = true;
+                return;
+
+            case SceneType.LevelDuelBlockingScene:
+                GameManager.Instance.IsBlockingActive = true;
+                return;
+        }
+    }
+
+    public void SetBotTurn()
+    {
+        setCooldown = true;
+    }
+
 }

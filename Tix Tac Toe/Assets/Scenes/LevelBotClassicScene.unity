@@ -8755,9 +8755,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2409630164152597296, guid: 2546d1f251d35544ca7cb28eb142b73f, type: 3}
+      propertyPath: Act2_IsRunning
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801351095458803824, guid: 2546d1f251d35544ca7cb28eb142b73f, type: 3}
+      propertyPath: Testing
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5905173755564803397, guid: 2546d1f251d35544ca7cb28eb142b73f, type: 3}
       propertyPath: BasePoints
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905173755564803397, guid: 2546d1f251d35544ca7cb28eb142b73f, type: 3}
+      propertyPath: EndPointsTesting
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 7544232012289190204, guid: 2546d1f251d35544ca7cb28eb142b73f, type: 3}
       propertyPath: m_Name
@@ -8984,6 +8996,10 @@ PrefabInstance:
     - target: {fileID: 7555130012405725744, guid: b9ee7c6b51e0d2647b93d63aea1bdc57, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041376009882723769, guid: b9ee7c6b51e0d2647b93d63aea1bdc57, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9112682071000778521, guid: b9ee7c6b51e0d2647b93d63aea1bdc57, type: 3}
       propertyPath: m_Name

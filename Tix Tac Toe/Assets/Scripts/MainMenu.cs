@@ -53,32 +53,33 @@ public class MainMenu : MonoBehaviour
                 switch (GameManager.LevelMode)
                 {
                     case SceneType.LevelBotClassicScene:
-                        SceneManager.LoadScene(SceneType.LevelBotClassicScene.ToString());
                         GameManager.Instance.IsClickingActive = true;
                         GameManager.Instance.IsBotActive = true;
-                        return;
+                        SceneManager.LoadScene(SceneType.LevelBotClassicScene.ToString());
 
-                    case SceneType.LevelDuelClassicScene:
-                        SceneManager.LoadScene(SceneType.LevelDuelClassicScene.ToString());
-                        GameManager.Instance.IsClickingActive = true;
                         return;
 
                     case SceneType.LevelBotScalingUpScene:
-                        SceneManager.LoadScene(SceneType.LevelBotScalingUpScene.ToString());
                         GameManager.Instance.IsClickingActive = true;
                         GameManager.Instance.IsBotActive = true;
                         GameManager.Instance.IsScalingUpActive = true;
+                        SceneManager.LoadScene(SceneType.LevelBotScalingUpScene.ToString());
+                        return;
+
+                    case SceneType.LevelDuelClassicScene:
+                        GameManager.Instance.IsClickingActive = true;
+                        SceneManager.LoadScene(SceneType.LevelDuelClassicScene.ToString());
                         return;
                         
                     case SceneType.LevelDuelScalingUpScene:
-                        SceneManager.LoadScene(SceneType.LevelBotScalingUpScene.ToString());
                         GameManager.Instance.IsClickingActive = true;
                         GameManager.Instance.IsScalingUpActive = true;
+                        SceneManager.LoadScene(SceneType.LevelBotScalingUpScene.ToString());
                         return;
                     
                     case SceneType.LevelDuelBlockingScene:
-                        SceneManager.LoadScene(SceneType.LevelDuelBlockingScene.ToString());
                         GameManager.Instance.IsBlockingActive = true;
+                        SceneManager.LoadScene(SceneType.LevelDuelBlockingScene.ToString());
                         return;
 
                 }

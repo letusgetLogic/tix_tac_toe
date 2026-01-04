@@ -69,9 +69,6 @@ public class UIManager : MonoBehaviour
         scoredPointsXGameObject.SetActive(false);
         scoredPointsOGameObject.SetActive(false);
             
-        PlayerXTurnGameObject.SetActive(false);
-        PlayerOTurnGameObject.SetActive(false);
-            
         congratulationsText.enabled = false;
 
         MovesPlayerX = 0;
@@ -178,15 +175,6 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Deactivates the turn arrows.
-    /// </summary>
-    public void OnDisableTurnSprites()
-    {
-        PlayerXTurnGameObject.SetActive(false);
-        PlayerOTurnGameObject.SetActive(false);
-    }
-
-    /// <summary>
     /// Displays the text and the animation for the ending.
     /// </summary>
     public void OnEnableCongratulationsTextX()
@@ -229,21 +217,13 @@ public class UIManager : MonoBehaviour
         congratulationsText.text = "- Draw -";
     }
 
-    /// <summary>
-    /// Sets GameObject of PlayerXTurn active and of PlayerOTurn inactive.
-    /// </summary>
-    public void OnEnablePlayerXTurn()
+    public void SetTurnX(bool isEnabled)
     {
-        PlayerXTurnGameObject.SetActive(true);
-        PlayerOTurnGameObject.SetActive(false);
+        PlayerXTurnGameObject.GetComponent<SpriteRenderer>().enabled = isEnabled;
     }
-        
-    /// <summary>
-    /// Sets GameObject of PlayerOTurn active and of PlayerXTurn inactive.
-    /// </summary>
-    public void OnEnablePlayerOTurn()
+
+    public void SetTurnO(bool isEnabled)
     {
-        PlayerOTurnGameObject.SetActive(true);
-        PlayerXTurnGameObject.SetActive(false);
+        PlayerOTurnGameObject.GetComponent<SpriteRenderer>().enabled = isEnabled;
     }
 }

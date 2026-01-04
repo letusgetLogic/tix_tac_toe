@@ -15,7 +15,9 @@ public class LevelManager : MonoBehaviour
         
     public readonly int NumberFieldVertical = 9;
     public readonly int NumberFieldHorizontal = 9;
-    
+
+    public readonly Vector2Int CenterIndex = new Vector2Int(4, 4);
+
     public GameObject[,] FieldArray;
     
     [HideInInspector] public bool GameOver;
@@ -46,15 +48,14 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        if (Testing) InitializeLevelWhileTesting();
-        
         CurrentState = LevelState.Play;
         GameOver = false;
-        TurnManager.Instance.PlayerIsTurn = false;
         
         FieldArray = new GameObject[NumberFieldHorizontal, NumberFieldVertical];
         
         CreateFields();
+
+        TurnManager.Instance.Init();
     }
         
     /// <summary>
@@ -74,19 +75,18 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     private void CreateFields()
     {
-        for (int fieldIndexVertical = 0; fieldIndexVertical < FieldArray.GetLength(0); fieldIndexVertical++)
+        for (int row = 0; row < FieldArray.GetLength(0); row++)
         {
-            for (int fieldIndexHorizontal = 0; 
-                 fieldIndexHorizontal < FieldArray.GetLength(1); fieldIndexHorizontal++)
+            for (int col = 0; col < FieldArray.GetLength(1); col++)
             {
-                Vector3 spawnPointPos = new Vector3(fieldIndexHorizontal, fieldIndexVertical, 0);
+                Vector3 spawnPointPos = new Vector3(col, row, 0);
                     
-                FieldArray[fieldIndexHorizontal, fieldIndexVertical] = 
+                FieldArray[col, row] = 
                     Instantiate(fieldPrefab, spawnPointPos, Quaternion.identity);
 
-                Field field = FieldArray[fieldIndexHorizontal, fieldIndexVertical].GetComponent<Field>();
+                Field field = FieldArray[col, row].GetComponent<Field>();
 
-                field.InitializeData(fieldIndexVertical, fieldIndexHorizontal, FieldStates.FigureEmpty);
+                field.InitializeData(col, row, FieldStates.FigureEmpty);
             }
         }
         
@@ -113,47 +113,4 @@ public class LevelManager : MonoBehaviour
         TurnManager.Instance.SetPlayerTurn();
     }
 
-    /// <summary>
-    /// Initializes serialized score in inspector and runs the level.
-    /// </summary>
-    private void InitializeLevelWhileTesting()
-    {
-        string sceneType = SceneManager.GetActiveScene().name;
-
-        if (Enum.TryParse(sceneType, out SceneType scene))
-        {
-            GameManager.LevelMode = scene;
-        }
-        else
-        {
-           Debug.Log("LevelManager::InitializeLevelWhileTesting: Invalid scene.!");
-        }
-        
-        switch (GameManager.LevelMode)
-        {
-            case SceneType.LevelBotClassicScene:
-                GameManager.Instance.IsClickingActive = true;
-                GameManager.Instance.IsBotActive = true;
-                return;
-
-            case SceneType.LevelDuelClassicScene:
-                GameManager.Instance.IsClickingActive = true;
-                return;
-
-            case SceneType.LevelBotScalingUpScene:
-                GameManager.Instance.IsClickingActive = true;
-                GameManager.Instance.IsBotActive = true;
-                GameManager.Instance.IsScalingUpActive = true;
-                return;
-
-            case SceneType.LevelDuelScalingUpScene:
-                GameManager.Instance.IsClickingActive = true;
-                GameManager.Instance.IsScalingUpActive = true;
-                return;
-
-            case SceneType.LevelDuelBlockingScene:
-                GameManager.Instance.IsBlockingActive = true;
-                return;
-        }
-    }
 }
