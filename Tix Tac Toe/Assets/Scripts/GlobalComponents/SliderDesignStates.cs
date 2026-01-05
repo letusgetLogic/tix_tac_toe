@@ -1,13 +1,11 @@
-using System;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
 
 namespace GlobalComponents
 {
     public class SliderDesignStates : MonoBehaviour
     {
-        public event Action<float> OnSliderValueChanged;
+        //public event Action<float> OnSliderValueChanged;
 
         private Slider slider => GetComponent<Slider>();
 
@@ -52,7 +50,9 @@ namespace GlobalComponents
             
             slider.value = closestValue; 
             
-            OnSliderValueChanged?.Invoke(closestValue);
+            //OnSliderValueChanged?.Invoke(closestValue);
+
+            AnimationManager.Instance.HandleSliderChange(closestValue);
 
             PlayerPrefs.SetFloat(sliderPrefKey, closestValue);
             PlayerPrefs.Save();

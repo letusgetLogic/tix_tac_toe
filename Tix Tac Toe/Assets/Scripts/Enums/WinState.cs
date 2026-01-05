@@ -2,7 +2,7 @@ namespace Enums
 {
     public enum WinState
     {
-        WinnerNone,
+        None,
         WinnerPlayerX,
         WinnerPlayerO,
         Draw

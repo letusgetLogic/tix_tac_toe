@@ -98,19 +98,19 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void EndTurn()
     {
+        AnimationManager.Instance.ScaleFieldsHaveRunned = false;
+        AnimationManager.Instance.Act4_IsRunning = false;
+        AnimationManager.Instance.AnimationIsRunning = false;
+
         CheckScoreConditions.Instance.SetDefaultFieldCount();
 
         UIManager.Instance.TurnOffScoredPointsX();
         UIManager.Instance.TurnOffScoredPointsO();
         
         Scoreboard.Instance.SetDefaultMultiplier();
-        Scoreboard.Instance.CheckResult();
-        
-        AnimationManager.Instance.ScaleFieldsHaveRunned = false;
-        AnimationManager.Instance.Act4_IsRunning = false;
-        AnimationManager.Instance.AnimationIsRunning = false;
-        
-        TurnManager.Instance.SetPlayerTurn();
+
+        if (Scoreboard.Instance.IsGameOver() == false)
+            TurnManager.Instance.SetPlayerTurn();
     }
 
 }

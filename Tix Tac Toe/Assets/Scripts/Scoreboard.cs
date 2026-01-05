@@ -139,7 +139,10 @@ public class Scoreboard : MonoBehaviour
             if (ScoreO >= EndPoints && ScoreO > ScoreX)
                 return WinState.WinnerPlayerO;
 
-            if (UIManager.Instance.MovesPlayerX + UIManager.Instance.MovesPlayerO == EvenFullFields())
+            int moves = UIManager.Instance.MovesPlayerX + UIManager.Instance.MovesPlayerO;
+            Debug.Log("Moves " + moves + " / " + EvenFullFields());
+
+            if (moves == EvenFullFields())
             {
                 if (ScoreX > ScoreO)
                     return WinState.WinnerPlayerX;
@@ -151,40 +154,39 @@ public class Scoreboard : MonoBehaviour
                     return WinState.Draw;
             }
         }
-        return WinState.WinnerNone;
+        return WinState.None;
     }
         
     /// <summary>
     /// Checks the result.
     /// </summary>
-    public void CheckResult()
+    public bool IsGameOver()
     {
         switch (CheckCurrentLevelStates())
         {
             case WinState.WinnerPlayerX:
-
                 LevelManager.Instance.GameOver = true;
                 TurnManager.Instance.CurrentPlayerTurn = TurnStates.PlayerEmpty;
-                    
                 UIManager.Instance.OnEnableCongratulationsTextX();
-                return;
+                return true;
                 
             case WinState.WinnerPlayerO:
-                    
                 LevelManager.Instance.GameOver = true;
                 TurnManager.Instance.CurrentPlayerTurn = TurnStates.PlayerEmpty;
-
                 UIManager.Instance.OnEnableCongratulationsTextO();
-                return;
+                return true;
                 
             case WinState.Draw:
-                    
                 LevelManager.Instance.GameOver = true;
                 TurnManager.Instance.CurrentPlayerTurn = TurnStates.PlayerEmpty;
-
                 UIManager.Instance.OnEnableCongratulationsTextDraw();
-                return;
+                return true;
+
+            case WinState.None:
+                return false;
         }
+
+        return default;
     }
 
     /// <summary>

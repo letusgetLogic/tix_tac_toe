@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AttentionScene.unity
     guid: 976453d697cc7724c86a560a4939edcf
   - enabled: 1
@@ -18,12 +18,12 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelDuelClassicScene.unity
     guid: 34b8db82b0d37db46869793c333564b0
   - enabled: 1
-    path: Assets/Scenes/LevelBotScalingUpScene.unity
-    guid: d23119a9e79310642b6f4237d7b1b925
-  - enabled: 1
     path: Assets/Scenes/LevelDuelScalingUpScene.unity
     guid: 53c81ee68733ca5428055da9694c4f21
   - enabled: 1
     path: Assets/Scenes/LevelDuelBlockingScene.unity
     guid: 51af6bf9a73b75b4ea6bd25553c4836c
+  - enabled: 1
+    path: Assets/Scenes/LevelBotScalingUpScene.unity
+    guid: d23119a9e79310642b6f4237d7b1b925
   m_configObjects: {}

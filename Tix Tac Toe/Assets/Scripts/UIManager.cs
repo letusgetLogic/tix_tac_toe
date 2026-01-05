@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] public GameObject PlayerOTurnGameObject;
     [SerializeField] public GameObject ZickZackGameObject;
     [SerializeField] public GameObject ZickZack2GameObject;
+    [SerializeField] public GameObject WASDGameObject;
+    [SerializeField] public GameObject ArrowGameObject;
     
     [SerializeField] private TextMeshProUGUI endPointsText;
 
@@ -189,6 +191,10 @@ public class UIManager : MonoBehaviour
         congratulationsText.text = "Player X wins!";
         ZickZackGameObject.SetActive(true);
         ZickZack2GameObject.SetActive(true);
+        SetTurnX(false);
+        SetTurnO(false);
+        if (WASDGameObject) WASDGameObject.SetActive(false);
+        if (ArrowGameObject) WASDGameObject.SetActive(false);
     }
     
     /// <summary>
@@ -206,6 +212,10 @@ public class UIManager : MonoBehaviour
         congratulationsText.text = "Player O wins!";
         ZickZackGameObject.SetActive(true);
         ZickZack2GameObject.SetActive(true);
+        SetTurnX(false);
+        SetTurnO(false);
+        if (WASDGameObject) WASDGameObject.SetActive(false);
+        if (ArrowGameObject) WASDGameObject.SetActive(false);
     }
     
     /// <summary>
@@ -215,6 +225,10 @@ public class UIManager : MonoBehaviour
     {
         congratulationsText.enabled = true;
         congratulationsText.text = "- Draw -";
+        SetTurnX(false);
+        SetTurnO(false);
+        if (WASDGameObject) WASDGameObject.SetActive(false);
+        if (ArrowGameObject) WASDGameObject.SetActive(false);
     }
 
     public void SetTurnX(bool isEnabled)

@@ -18,8 +18,8 @@ public class Field : MonoBehaviour
     [HideInInspector] public FieldStates State;
 
     private bool isClickable;
-        
-    
+
+
     /// <summary>
     /// Start method.
     /// </summary>
@@ -33,7 +33,7 @@ public class Field : MonoBehaviour
         makeUpSprite.SetActive(false);
         isClickable = true;
     }
-        
+
     /// <summary>
     /// Initializes data of field.
     /// </summary>
@@ -46,14 +46,14 @@ public class Field : MonoBehaviour
         this.Row = indexRow;
         this.State = fieldState;
     }
-    
+
     /// <summary>
     /// On mouse down event.
     /// </summary>
     public void OnMouseDown()
     {
         if (!GameManager.Instance.IsClickingActive) return;
-        
+
         CheckInput();
     }
 
@@ -62,9 +62,11 @@ public class Field : MonoBehaviour
     /// </summary>
     public void CheckInput()
     {
-        if (TurnManager.Instance.PlayerIsTurn || 
-            !isClickable || 
-            LevelManager.CurrentState != LevelState.Play)
+        if (LevelManager.Instance.GameOver ||
+            LevelManager.CurrentState != LevelState.Play ||
+            TurnManager.Instance.PlayerIsTurn ||
+            !isClickable ||
+            State != FieldStates.FigureEmpty)
         {
             return;
         }
@@ -74,10 +76,10 @@ public class Field : MonoBehaviour
         {
             return;
         }
-        
+
         isClickable = false;
         TurnManager.Instance.PlayerIsTurn = true;
-            
+
         ActivateFieldBehaviour();
     }
 
@@ -86,17 +88,11 @@ public class Field : MonoBehaviour
     /// </summary>
     public void ActivateFieldBehaviour()
     {
-        if (!LevelManager.Instance.GameOver)
-        {
-            if (State == FieldStates.FigureEmpty)
-            {
-                SetFieldState();
+        SetFieldState();
 
-                CheckScoreConditions.Instance.InitializeData(Col, Row, State);
-                    
-                AnimationManager.Instance.StartAnimation();
-            }
-        }
+        CheckScoreConditions.Instance.InitializeData(Col, Row, State);
+
+        AnimationManager.Instance.StartAnimation();
     }
 
     /// <summary>
@@ -109,25 +105,25 @@ public class Field : MonoBehaviour
         if (TurnManager.Instance.CurrentPlayerTurn == TurnStates.PlayerX)
         {
             OnEnableX_Sprite();
-                        
+
             State = FieldStates.FigureX;
-                        
+
             PlaySoundX();
-                        
+
             UIManager.Instance.MovesPlayerX++;
         }
         else if (TurnManager.Instance.CurrentPlayerTurn == TurnStates.PlayerO)
         {
             OnEnableO_Sprite();
-                        
+
             State = FieldStates.FigureO;
-                        
+
             PlaySoundO();
-                        
+
             UIManager.Instance.MovesPlayerO++;
         }
     }
-    
+
     /// <summary>
     /// Sets X-Sprite active.
     /// </summary>
@@ -135,7 +131,7 @@ public class Field : MonoBehaviour
     {
         oSprite.SetActive(false);
         oSpriteBack.SetActive(false);
-                        
+
         xSprite.SetActive(true);
         xSpriteBack.SetActive(true);
     }
@@ -147,7 +143,7 @@ public class Field : MonoBehaviour
     {
         xSprite.SetActive(false);
         xSpriteBack.SetActive(false);
-                        
+
         oSprite.SetActive(true);
         oSpriteBack.SetActive(true);
     }

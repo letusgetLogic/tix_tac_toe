@@ -399,10 +399,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1cff323f9b1eb49825d00ee4723ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingsPanel: {fileID: 817767210073570620}
+  animationSlider: {fileID: 0}
   checkBox: {fileID: 5833521261688022149}
   numberIndex: {fileID: 6050968037952200330, guid: eaa38110b9f413c43ae12e92c736cb1e, type: 3}
   alphabetIndex: {fileID: 3005791681202783107, guid: 9df4410a2d7ac7247ab123885943611f, type: 3}
+  musicSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
 --- !u!1 &902256007233939084
 GameObject:
   m_ObjectHideFlags: 0
@@ -2787,7 +2789,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8504634180541672289, guid: 3e54c2285dc750b44ba922e0ce24ee80, type: 3}
       propertyPath: m_Value
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

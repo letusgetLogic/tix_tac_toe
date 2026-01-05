@@ -1,15 +1,18 @@
 using GlobalComponents;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class AnimationManager : MonoBehaviour
 {
     public static AnimationManager Instance;
 
     [SerializeField] private float maxScale = 2f;
-    [SerializeField] private float animationDelay = 1f; // Delay between 'field is clicked' and animation;
-    private readonly float[] sliderStates = { 0f, 0.5f, 1f };
-        
+
+    
+    private float animationDelay;
+
     [Header("States")]
     // Booleans for the check methods at a certain time. It should run in order.
     public bool AnimationIsRunning;
@@ -81,6 +84,7 @@ public class AnimationManager : MonoBehaviour
         SetAnimationDelay = false;
         startsAnimationDelayCount = false;
         AnimationDelayCount = 0f;
+        SetDelayAnimation();
         
         ScaleFieldsIsRunning = false;
         ScaleFieldsHaveRunned = false;
@@ -95,21 +99,25 @@ public class AnimationManager : MonoBehaviour
         indexCountTemp = 0;
     }
 
-    /// <summary>
-    /// On disable.
-    /// </summary>
-    private void OnDisable()
+    private void SetDelayAnimation()
     {
-        sliderDesignStates.OnSliderValueChanged -= HandleSliderChange;
+        if (PlayerPrefs.HasKey("AnimationDuration"))
+        {
+            animationDelay = PlayerPrefs.GetFloat("AnimationDuration");
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("AnimationDuration", GameManager.Instance.AnimationDelayDefault);
+            animationDelay = GameManager.Instance.AnimationDelayDefault;
+        }
     }
 
     /// <summary>
     /// Handle slider change.
     /// </summary>
     /// <param name="value"></param>
-    private void HandleSliderChange(float value)
+    public void HandleSliderChange(float value)
     {
-        Debug.Log(value);
         animationDelay = value;
     }
     
@@ -373,17 +381,4 @@ public class AnimationManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Initializes sliderDesignStates.
-    /// </summary>
-    /// <param name="sliderDesignStates"></param>
-    public void InitializeSliderDesignStates(SliderDesignStates sliderDesignStates)
-    {
-        this.sliderDesignStates = sliderDesignStates;
-
-        float sliderValue = this.sliderDesignStates.GetSliderComponent(sliderStates, "AnimationDuration", animationDelay);
-        animationDelay = sliderValue;
-
-        this.sliderDesignStates.OnSliderValueChanged += HandleSliderChange;
-    }
 }

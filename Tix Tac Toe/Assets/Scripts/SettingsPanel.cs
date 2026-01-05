@@ -13,8 +13,9 @@ public class SettingsPanel : MonoBehaviour
     [SerializeField] private GameObject alphabetIndex;
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
-    
-    
+
+    private readonly float[] sliderStates = { 0f, 0.5f, 1f };
+
     /// <summary>
     /// Start method.
     /// </summary>
@@ -28,8 +29,7 @@ public class SettingsPanel : MonoBehaviour
 
         AudioManager.Instance.InitializeMusicSlider(musicSlider);
         AudioManager.Instance.InitializeSFXSlider(sfxSlider);
-        AnimationManager.Instance.InitializeSliderDesignStates(animationSlider.GetComponent<SliderDesignStates>());
-       
+        animationSlider.GetComponent<SliderDesignStates>().GetSliderComponent(sliderStates, "AnimationDuration", GameManager.Instance.AnimationDelayDefault);
         gameObject.SetActive(false);
     }
 

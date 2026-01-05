@@ -1,5 +1,5 @@
-using UnityEngine;
 using Enums;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,10 +8,13 @@ public class GameManager : MonoBehaviour
     public static SceneType LevelMode;
 
     public bool IsBotActive { get; set; }
-    public bool IsClickingActive;
-    public bool IsBlockingActive;
-    public bool IsScalingUpActive;
-    
+    public bool IsClickingActive { get; set; }
+    public bool IsBlockingActive { get; set; }
+    public bool IsScalingUpActive { get; set; }
+
+    public float AnimationDelayDefault => animationDelayDefault;
+    [SerializeField] private float animationDelayDefault = 1f; // Delay between 'field is clicked' and animation;
+
     /// <summary>
     /// Awake method.
     /// </summary>
@@ -26,5 +29,10 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject); // Destroy the new instance instead of the old one.
         }
+    }
+
+    private void Start()
+    {
+        PlayerPrefs.SetFloat("AnimationDuration", animationDelayDefault);
     }
 }
